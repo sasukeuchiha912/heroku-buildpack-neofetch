@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo "-----> NeoFetch app Detected, Installing Neofetch..."
+BUILD_DIR=$1
+cd $BUILD_DIR
+mkdir -p "vendor" 
+cd "vendor"
+DOWNLOAD_URL="https://raw.githubusercontent.com/dylanaraps/neofetch/master/neofetch"
+wget $DOWNLOAD_URL -q
+chmod +x neofetch
+PROFILE_PATH="$BUILD_DIR/.profile.d/neofetch.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:${HOME}/vendor"' >> $PROFILE_PATH
+echo "-----> Neofetch Installed successfully"
